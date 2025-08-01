@@ -67,6 +67,8 @@ Available multifarm language pairs:<br/>
 `de-fr`, `de-nl`, `de-pt`, `de-ru`, `en-es`, `en-fr`, `en-nl`, `en-pt`, `en-ru`, `es-fr`, `es-nl`, `es-pt`, `es-ru`, 
 `fr-nl`, `fr-pt`, `fr-ru`, `nl-pt`, `nl-ru`, `pt-ru`
 
+Added languages in 2025:<br/>
+`ar-hi`, `cn-hi`, `cz-hi`, `de-hi`, `hi-en`, `hi-es`, `hi-fr`, `hi-nl`, `hi-pt`, `hi-ru` (for `hi-it` only private tests available)
 
 
 ## ML-based Tracks
