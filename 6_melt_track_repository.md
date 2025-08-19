@@ -55,9 +55,9 @@ Laboratory | `laboratory`| `laboratory-v1` [<i class="fa fa-arrow-circle-down"><
 [mse](https://github.com/EngyNasr/MSE-Benchmark) | `mse` | `2021` [<i class="fa fa-arrow-circle-down"></i>](https://oaei.webdatacommons.org/tdrs/testdata/persistent/mse/2021/mse_2021.zip) | 
 [pgx](http://oaei.ontologymatching.org/2023/pharmacogenomics/index.html) | `pharmacogenomics` | `v1` [<i class="fa fa-arrow-circle-down"></i>](https://oaei.webdatacommons.org/tdrs/testdata/persistent/pharmacogenomics/v1/pharmacogenomics_v1.zip) | 
 [digial humanities](https://oaei.ontologymatching.org/2024/digitalhumanities/index.html) | `dh` | `2024all` [<i class="fa fa-arrow-circle-down"></i>](https://oaei.webdatacommons.org/tdrs/testdata/persistent/dh/2024all/dh_2024all.zip)<br/> `2024arch` [<i class="fa fa-arrow-circle-down"></i>](https://oaei.webdatacommons.org/tdrs/testdata/persistent/dh/2024arch/dh_2024arch.zip)<br/> `2024cult` [<i class="fa fa-arrow-circle-down"></i>](https://oaei.webdatacommons.org/tdrs/testdata/persistent/dh/2024cult/dh_2024cult.zip)<br/> `2024dhcs` [<i class="fa fa-arrow-circle-down"></i>](https://oaei.webdatacommons.org/tdrs/testdata/persistent/dh/2024dhcs/dh_2024dhcs.zip) | 
-[circular economy](https://oaei.ontologymatching.org/2024/ce/index.html) | `ce_track` | `ce_track` [<i class="fa fa-arrow-circle-down"></i>](https://oaei.webdatacommons.org/tdrs/testdata/persistent/ce_track/ce_track/ce_track_ce_track.zip) | 
+[circular economy](https://oaei.ontologymatching.org/2024/ce/index.html) | `ce_track` | `ce_track` [<i class="fa fa-arrow-circle-down"></i>](https://oaei.webdatacommons.org/tdrs/testdata/persistent/ce_track/ce_track/ce_track_ce_track.zip) <br/> `v2` [<i class="fa fa-arrow-circle-down"></i>](https://oaei.webdatacommons.org/tdrs/testdata/persistent/ce_track/v2/ce_track_v2.zip)| 
 [archaeology](https://oaei.ontologymatching.org/2024/archaeology/index.html) | `archaeology` | `2024all` [<i class="fa fa-arrow-circle-down"></i>](https://oaei.webdatacommons.org/tdrs/testdata/persistent/archaeology/2024all/archaeology_2024all.zip) | 
-
+[generalrelation](https://oaei.ontologymatching.org/2025/generalrelations/index.html) | `generalrelation` | `v1` [<i class="fa fa-arrow-circle-down"></i>](https://oaei.webdatacommons.org/tdrs/testdata/persistent/generalrelation/v1/generalrelation_v1.zip) | 
 
 
 
