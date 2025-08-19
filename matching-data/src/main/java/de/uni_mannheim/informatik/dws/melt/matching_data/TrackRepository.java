@@ -859,6 +859,24 @@ public class TrackRepository {
          * The Circular Economy track is about matching relevant Circular Economy ontologies.
          */
         public static Track Default = new SealsTrack("http://oaei.webdatacommons.org/tdrs/", "ce_track", "ce_track");
+        
+        /**
+         * This is the default version of the track which is added in 2024.
+         * The Circular Economy track is about matching relevant Circular Economy ontologies.
+         */
+        public static Track V2 = new SealsTrack("http://oaei.webdatacommons.org/tdrs/", "ce_track", "v2");
+    }
+    
+    /**
+     * This track addresses the growing demand for semantic integration where simple equivalence mappings are insufficient.
+     */
+    public static class GeneralRelation {
+        
+        /**
+         * This is the first version of the track which is added in 2025.
+         * This track addresses the growing demand for semantic integration where simple equivalence mappings are insufficient.
+         */
+        public static Track V1 = new SealsTrack("http://oaei.webdatacommons.org/tdrs/", "generalrelation", "v1");
     }
     
     /**
