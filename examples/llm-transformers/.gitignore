@@ -1,0 +1,42 @@
+# Maven build output
+target/
+dependency-reduced-pom.xml
+
+# Local datasets, model caches, and generated outputs
+data/
+models/
+results/
+sealsResults/
+sealsTmp/
+oaei_track_cache/
+trackCache/
+benchmarkCache/
+current_result.rdf
+result.rdf
+alignment_results.rdf
+
+# Python / transformer runtime caches
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+.cache/
+.huggingface/
+
+# Virtual environments
+.venv/
+venv/
+env/
+melt_env/
+
+# Logs and local config
+*.log
+log.txt
+python_command.txt
+local_config.properties
+
+# Editor / OS files
+.vscode/
+.idea/
+*.iml
+.DS_Store
