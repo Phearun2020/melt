@@ -1714,6 +1714,9 @@ def inner_text_generation_prediction(request_headers):
         dtype_value = used_loading_arguments.get("torch_dtype")
         if dtype_value:
             used_loading_arguments["torch_dtype"] = getattr(torch, dtype_value.strip().replace("torch.", ""))
+        bnb_compute_dtype_value = used_loading_arguments.get("bnb_4bit_compute_dtype")
+        if bnb_compute_dtype_value:
+            used_loading_arguments["bnb_4bit_compute_dtype"] = getattr(torch, bnb_compute_dtype_value.strip().replace("torch.", ""))
 
         
         app.logger.info("text_generation_prediction: load tokenizer / model: %s with arguments: %s", model_name, used_loading_arguments)

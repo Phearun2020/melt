@@ -55,7 +55,7 @@ public class OLaLaForOAEI implements IMatcher<OntModel,Alignment,Properties> {
         biEncoder.addResourceFilter(SentenceTransformersPredicateBadHosts.class);
         
         
-        String model = "meta-llama/Llama-2-7b-hf";
+        String model = "meta-llama/Meta-Llama-3-8B";
                 
         LLMBinaryFilter llmTransformersFilter = new LLMBinaryFilter(
                 new TextExtractorOnlyLabel(), 
@@ -72,7 +72,10 @@ public class OLaLaForOAEI implements IMatcher<OntModel,Alignment,Properties> {
                 .addGenerationArgument("temperature", 0.0);
         llmTransformersFilter
                 .addLoadingArgument("device_map", "auto")
-                .addLoadingArgument("torch_dtype", "float16");
+                .addLoadingArgument("load_in_4bit", true)
+                .addLoadingArgument("bnb_4bit_use_double_quant", true)
+                .addLoadingArgument("bnb_4bit_quant_type", "nf4")
+                .addLoadingArgument("bnb_4bit_compute_dtype", "bfloat16");
         
         MatcherPipelineYAAAJenaConstructor highPrecision = new MatcherPipelineYAAAJenaConstructor(
             new HighPrecisionMatcher(),
