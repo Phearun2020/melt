@@ -3,6 +3,7 @@ package de.uni_mannheim.informatik.dws.melt.examples.llm_transformers;
 import de.uni_mannheim.informatik.dws.melt.matching_data.TestCase;
 import de.uni_mannheim.informatik.dws.melt.matching_data.Track;
 import de.uni_mannheim.informatik.dws.melt.matching_data.TrackNameLookup;
+import de.uni_mannheim.informatik.dws.melt.matching_data.TrackRepository;
 import de.uni_mannheim.informatik.dws.melt.matching_eval.ExecutionResultSet;
 import de.uni_mannheim.informatik.dws.melt.matching_eval.Executor;
 import de.uni_mannheim.informatik.dws.melt.matching_eval.evaluator.Evaluator;
@@ -77,6 +78,8 @@ public class RunOLaLaForOAEI {
             matcher.setGpus(cmd.getOptionValue("g"));
         if(cmd.hasOption("tc"))
             matcher.setTransformersCache(new File(cmd.getOptionValue("tc")));
+        if(cmd.hasOption("l"))
+            matcher.setCandidateLimit(parseCandidateLimit(cmd.getOptionValue("l")));
         
         ExecutionResultSet ers = Executor.run(testCases, matcher, "OLaLa");
         
@@ -127,13 +130,18 @@ public class RunOLaLaForOAEI {
                 .hasArg()
                 .desc("The file path to the transformers cache.")
                 .build());
+        
+        options.addOption(Option.builder("l")
+                .longOpt("limit")
+                .hasArg()
+                .desc("Maximum number of SBERT candidates sent to the LLM. Default is 20 for a smoke run. Use 0 for the full run.")
+                .build());
 
         options.addOption(Option.builder("tracks")
                 .longOpt("tracks")
-                .required()
                 .hasArgs()
                 .valueSeparator(' ')
-                .desc("The tracks to be used, separated by spaces.")
+                .desc("The tracks to be used, separated by spaces. Defaults to Knowledgegraph V4 test case marvel-cinematic-marvel.")
                 .build()
         );
         
@@ -148,6 +156,21 @@ public class RunOLaLaForOAEI {
         return options;
     }
     
+    private static int parseCandidateLimit(String limit){
+        try {
+            int parsed = Integer.parseInt(limit);
+            if(parsed < 0){
+                LOGGER.warn("Argument candidate limit (-l) must be zero or positive but was {}. ABORTING program.", limit);
+                System.exit(1);
+            }
+            return parsed;
+        } catch (NumberFormatException ex) {
+            LOGGER.warn("Argument candidate limit (-l) which is set to \"{}\" is not a number.", limit);
+            System.exit(1);
+            return 20;
+        }
+    }
+    
     private static int getFreePortOnHost() {
         try (ServerSocket socket = new ServerSocket(0)) {
             return socket.getLocalPort();
@@ -158,8 +181,17 @@ public class RunOLaLaForOAEI {
     
     private static List<TestCase> getTestCases(CommandLine cmd){
         List<TestCase> testcases = new ArrayList<>();
-        for(Track track : getTracks(cmd)){
-            testcases.addAll(track.getTestCases());
+        if (cmd.hasOption("tracks") == false) {
+            TestCase marvel = TrackRepository.Knowledgegraph.V4.getTestCase("marvelcinematicuniverse-marvel");
+            if (marvel == null) {
+                LOGGER.warn("Could not retrieve test case marvel-cinematic-marvel from Knowledgegraph V4. ABORTING program.");
+                System.exit(1);
+            }
+            testcases.add(marvel);
+        } else {
+            for(Track track : getTracks(cmd)){
+                testcases.addAll(track.getTestCases());
+            }
         }
         if (testcases.isEmpty()) {
             LOGGER.warn("No testcase can be retrived for all specified tracks. ABORTING program.");

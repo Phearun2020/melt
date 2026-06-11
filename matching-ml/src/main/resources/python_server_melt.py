@@ -1705,7 +1705,9 @@ def inner_text_generation_prediction(request_headers):
         assert len(data_left) == len(data_right)
         
         used_loading_arguments = {}
-        used_loading_arguments["device_map"] = "auto"
+        requested_device = loading_arguments.pop("device", None)
+        if requested_device is None:
+            used_loading_arguments["device_map"] = "auto"
         used_loading_arguments.update(**loading_arguments)
         
         #update dtype
@@ -1725,7 +1727,10 @@ def inner_text_generation_prediction(request_headers):
             #offload_folder="./offload",
             #device_map="auto"
         )
-        app.logger.info("text_generation_prediction: start prediction with device map: %s", model.hf_device_map)
+        if requested_device is not None:
+            model.to(requested_device)
+        app.logger.info("text_generation_prediction: start prediction with device map: %s",
+                        getattr(model, "hf_device_map", requested_device))
         
         stopper = StopOnWords(tokenizer, detect_words)
         used_generation_arguments = {}

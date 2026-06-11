@@ -230,27 +230,6 @@
         </dependency>
 
 
-        <!-- BabelNet dependency, hosted at the University of Mannheim -->
-        <dependency>
-            <groupId>it.uniroma1.lcl</groupId>
-            <artifactId>babelnet</artifactId>
-            <version>4.0.1</version>
-        </dependency>
-
-        <!-- BabelNet dependency, hosted at the University of Mannheim -->
-        <dependency>
-            <groupId>it.uniroma1.lcl</groupId>
-            <artifactId>lcl-jlt</artifactId>
-            <version>2.4</version>
-        </dependency>
-
-        <!-- BabelNet dependency, hosted at the University of Mannheim -->
-        <dependency>
-            <groupId>com.babelscape</groupId>
-            <artifactId>babelscape-data-commons</artifactId>
-            <version>1.0</version>
-        </dependency>
-
         <!-- BabelNet Lib Dependency -->
         <dependency>
             <groupId>commons-beanutils</groupId>
@@ -401,6 +380,62 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+                <configuration>
+                    <excludes>
+                        <exclude>**/external/babelnet/BabelNetKnowledgeSource.java</exclude>
+                        <exclude>**/external/babelnet/BabelNetLinker.java</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>babelnet-offline</id>
+            <dependencies>
+                <!-- BabelNet dependency, hosted at the University of Mannheim -->
+                <dependency>
+                    <groupId>it.uniroma1.lcl</groupId>
+                    <artifactId>babelnet</artifactId>
+                    <version>4.0.1</version>
+                </dependency>
+
+                <!-- BabelNet dependency, hosted at the University of Mannheim -->
+                <dependency>
+                    <groupId>it.uniroma1.lcl</groupId>
+                    <artifactId>lcl-jlt</artifactId>
+                    <version>2.4</version>
+                </dependency>
+
+                <!-- BabelNet dependency, hosted at the University of Mannheim -->
+                <dependency>
+                    <groupId>com.babelscape</groupId>
+                    <artifactId>babelscape-data-commons</artifactId>
+                    <version>1.0</version>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-compiler-plugin</artifactId>
+                        <version>3.8.1</version>
+                        <configuration>
+                            <excludes combine.self="override" />
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
     <repositories>
         <repository>
