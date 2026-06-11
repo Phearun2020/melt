@@ -1,10 +1,10 @@
-gensim==4.3.1
+gensim>=4.4.0
 scipy<1.13 # because of gensim -> see https://stackoverflow.com/questions/78279136/importerror-cannot-import-name-triu-from-scipy-linalg-when-importing-gens
 flask>=2.0
 Werkzeug<=2.2.3 # necessary because starting from 2.3.0 the webserver do not get the request headers
-numpy>=1.11.3
-scikit-learn>=0.23.1
-pandas>=1.1.0
+numpy>=1.26,<2.0
+scikit-learn>=1.5,<1.6
+pandas>=2.2,<2.3
 torch>=1.8.0
 transformers>=4.8.0
 accelerate>=0.20.1
