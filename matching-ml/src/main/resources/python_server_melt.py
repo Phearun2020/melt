@@ -1759,9 +1759,9 @@ def inner_text_generation_prediction(request_headers):
                 header.append(str(i) + "(" + "|".join(reduced_word_variation) + ")")
             writer.writerow(header)
 
+        number_of_examples = min(len(data_left), len(data_right))
         for i, (left_text, right_text) in enumerate(zip(data_left, data_right)):
-            if i % 100 == 0:
-                app.logger.info("processed %s examples", i)
+            app.logger.info("processing example %s / %s", i + 1, number_of_examples)
             
             #app.logger.debug("tokenize")
             text = promt.replace("{left}", left_text).replace("{right}", right_text)
@@ -1772,14 +1772,16 @@ def inner_text_generation_prediction(request_headers):
             attention_mask = model_inputs.get("attention_mask", None)
             
             #app.logger.debug("generate")
-            generated_sequence = model.generate(input_ids=input_ids, attention_mask=attention_mask,
-                output_scores=True, return_dict_in_generate=True,
-                **used_generation_arguments
-            )
+            with torch.inference_mode():
+                generated_sequence = model.generate(input_ids=input_ids, attention_mask=attention_mask,
+                    output_scores=True, return_dict_in_generate=True,
+                    **used_generation_arguments
+                )
             #app.logger.debug("conf extraction")
             list_of_conf, found = stopper.get_confidence_at_found_token(generated_sequence.sequences, generated_sequence.scores)
             #combined_confidence = conf_positive / (conf_positive + conf_negative)
             results_list.append(list_of_conf)
+            app.logger.info("finished example %s / %s", i + 1, number_of_examples)
             
             if debug_file:
                 writer.writerow([

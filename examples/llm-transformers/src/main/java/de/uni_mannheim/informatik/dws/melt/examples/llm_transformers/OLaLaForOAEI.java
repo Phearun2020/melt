@@ -68,8 +68,10 @@ public class OLaLaForOAEI implements IMatcher<OntModel,Alignment,Properties> {
             llmTransformersFilter.setCudaVisibleDevices(this.gpus);
         
         llmTransformersFilter
-                .addGenerationArgument("max_new_tokens", 10)
-                .addGenerationArgument("temperature", 0.0);
+                .addGenerationArgument("max_new_tokens", 3)
+                .addGenerationArgument("temperature", 0.0)
+                .addGenerationArgument("do_sample", false)
+                .addGenerationArgument("max_time", 60.0);
         llmTransformersFilter
                 .addLoadingArgument("device_map", "auto")
                 .addLoadingArgument("torch_dtype", "bfloat16");
