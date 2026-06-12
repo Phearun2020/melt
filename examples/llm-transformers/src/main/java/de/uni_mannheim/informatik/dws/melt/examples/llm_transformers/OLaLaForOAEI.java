@@ -55,7 +55,7 @@ public class OLaLaForOAEI implements IMatcher<OntModel,Alignment,Properties> {
         biEncoder.addResourceFilter(SentenceTransformersPredicateBadHosts.class);
         
         
-        String model = "meta-llama/Meta-Llama-3-8B";
+        String model = "Qwen/Qwen2.5-7B-Instruct";
                 
         LLMBinaryFilter llmTransformersFilter = new LLMBinaryFilter(
                 new TextExtractorOnlyLabel(), 
